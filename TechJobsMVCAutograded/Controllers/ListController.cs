@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TechJobsMVCAutograded.Data;
@@ -43,7 +44,20 @@ namespace TechJobsMVCAutograded.Controllers
 
         // TODO #2 - Complete the Jobs action method
         public IActionResult Jobs(string column, string value)
-        { 
+        {
+            List<Job> jobs = new List<Job>();
+            if (column.Equals("all"))
+            {
+                jobs = JobData.FindAll();
+                ViewBag.title = "All Jobs";
+            }
+            else
+            {
+                jobs = JobData.FindByColumnAndValue(column, value);
+                ViewBag.title = $"Jobs with {value}";
+            }
+
+            ViewBag.jobs = jobs;
             return View();
         }
     }
