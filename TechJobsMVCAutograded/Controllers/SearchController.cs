@@ -29,7 +29,7 @@ namespace TechJobsMVCAutograded.Controllers
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Job> jobs = new List<Job>();
-            if (searchTerm.Equals("all") || searchTerm.Equals(null) || searchTerm.Equals(""))
+            if (searchTerm.Equals("All") || searchTerm.Equals(null) || searchTerm.Equals(""))
             {
                 jobs = JobData.FindAll();
             }
@@ -39,7 +39,8 @@ namespace TechJobsMVCAutograded.Controllers
             }
 
             ViewBag.columns = ListController.ColumnChoices;
-            ViewBag.title = $"Search Condition: ${ListController.ColumnChoices[searchType]} Search Term: ${searchTerm}";
+            ViewBag.title = $"Search Type: ${ListController.ColumnChoices[searchType]} Search Term: ${searchTerm}";
+            ViewBag.jobs = jobs;
             return View(jobs);
 
         }

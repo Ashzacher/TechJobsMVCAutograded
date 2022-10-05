@@ -46,7 +46,7 @@ namespace TechJobsMVCAutograded.Controllers
         public IActionResult Jobs(string column, string value)
         {
             List<Job> jobs = new List<Job>();
-            if (column.Equals("all"))
+            if (column.Equals("All"))
             {
                 jobs = JobData.FindAll();
                 ViewBag.title = "All Jobs";
